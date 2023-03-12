@@ -51,10 +51,11 @@ export interface CoatOfArms {
 }
 
 export interface Currencies {
-  DOP?: Dop;
-  NIO?: Dop;
-  EUR?: Dop;
-  XCD?: Dop;
+  // DOP?: Dop;
+  // NIO?: Dop;
+  // EUR?: Dop;
+  // XCD?: Dop;
+  // CRC?: Dop;
 }
 
 export interface Dop {

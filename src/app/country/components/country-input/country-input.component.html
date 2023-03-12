@@ -4,6 +4,7 @@
     name="searchInput"
     class="form-control"
     [(ngModel)]="searchInput"
-    placeholder="Type a country name.."
+    [placeholder]="customPlaceholder"
+    (input)="letterPressed()"
   />
 </form>

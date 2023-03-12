@@ -1,1 +1,72 @@
-<p>view-country works!</p>
+<div *ngIf="!country; else countryrow" class="alert alert-info">
+  <p>Loading...</p>
+</div>
+
+<ng-template #countryrow>
+  <div class="row">
+    <div class="col-12 d-flex">
+      <h3>
+        Country:
+        <small class="fst-italic" ngClass="country-name">{{
+          country.name.common | uppercase
+        }}</small>
+      </h3>
+      <img
+        [src]="country.flags.png"
+        height="40"
+        [alt]="country.name.common + ' flag'"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 d-flex align-items-center gap-3">
+      <h3>Capital:</h3>
+      <p class="fs-2">{{ country.capital[0] }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h3>Details</h3>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col">
+      <table class="table table-hover border">
+        <thead>
+          <tr>
+            <th>Official Name</th>
+            <th>Population</th>
+            <th>Sub Region</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>{{ country.name.official }}</td>
+            <td>{{ country.population | number }}</td>
+            <td>
+              {{ country.subregion }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h3 class="">Translations</h3>
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <p
+          *ngFor="let t of country.translations | keyvalue"
+          class="badge bg-primary mr-5"
+        >
+          {{ t.value.official }}
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-template>

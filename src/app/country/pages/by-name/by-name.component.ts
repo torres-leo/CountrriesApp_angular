@@ -14,15 +14,15 @@ export class ByNameComponent {
 
   constructor(private countryService: CountryService) {}
 
-  search() {
+  search(value: string) {
     this.errorExist = false;
+    this.searchInput = value;
+
     this.countryService.searchByName(this.searchInput).subscribe(
       (countries) => {
-        console.log(countries);
         this.countries = countries;
       },
       (error) => {
-        console.error('Error: ', error);
         this.errorExist = true;
         this.countries = [];
         setTimeout(() => {
@@ -31,5 +31,9 @@ export class ByNameComponent {
         }, 6000);
       }
     );
+  }
+
+  typedText(value: string) {
+    this.errorExist = false;
   }
 }
