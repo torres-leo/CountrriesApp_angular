@@ -5,6 +5,7 @@
       <th>Flag</th>
       <th>Country</th>
       <th>Capital</th>
+      <th>Region</th>
       <th>Population</th>
       <th></th>
     </tr>
@@ -16,8 +17,9 @@
       <td>
         <img [src]="country.flags.svg" alt="" width="40px" />
       </td>
-      <td>{{ country.name.common }}</td>
-      <td>{{ country.capital[0] }}</td>
+      <td>{{ country.name.common || country.name }}</td>
+      <td>{{ renderCapital(i) }}</td>
+      <td>{{ country.region }}</td>
       <td>{{ country.population | number }}</td>
       <td>
         <a

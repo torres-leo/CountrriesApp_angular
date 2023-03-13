@@ -10,4 +10,10 @@ export class CountryTableComponent {
   @Input() countries: Country[] = [];
 
   constructor() {}
+
+  renderCapital(index: number) {
+    if (this.countries[index].capital) return this.countries[index].capital[0];
+
+    return this.countries[index].name.common;
+  }
 }

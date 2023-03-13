@@ -12,14 +12,20 @@ export class ByNameComponent {
   errorExist = false;
   countries: Country[] = [];
 
+  SugCountries: Country[] = [];
+  suggestActive: boolean = false;
+
   constructor(private countryService: CountryService) {}
 
   search(value: string) {
+    this.suggestActive = false;
+
     this.errorExist = false;
     this.searchInput = value;
 
     this.countryService.searchByName(this.searchInput).subscribe(
       (countries) => {
+        console.log(countries);
         this.countries = countries;
       },
       (error) => {
@@ -33,7 +39,17 @@ export class ByNameComponent {
     );
   }
 
-  typedText(value: string) {
+  suggestText(value: string) {
     this.errorExist = false;
+    this.searchInput = value;
+    this.suggestActive = true;
+
+    this.countryService.searchByName(value).subscribe((countries) => {
+      this.SugCountries = countries.splice(0, 5);
+    });
+  }
+
+  suggestCountry(value: string) {
+    this.search(value);
   }
 }

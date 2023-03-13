@@ -8,7 +8,7 @@ export interface Country {
   independent: boolean;
   status: string;
   unMember: boolean;
-  currencies: Currencies;
+  currencies: { [key: string]: Currencies };
   idd: Idd;
   capital: string[];
   altSpellings: string[];
@@ -56,6 +56,8 @@ export interface Currencies {
   // EUR?: Dop;
   // XCD?: Dop;
   // CRC?: Dop;
+  name: string;
+  symbol: string;
 }
 
 export interface Dop {

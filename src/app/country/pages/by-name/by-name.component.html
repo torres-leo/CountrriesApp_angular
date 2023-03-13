@@ -1,13 +1,39 @@
-<h3>By Name</h3>
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h3 class="mb-2">By Name</h3>
 
-<div class="row">
-  <div class="col">
-    <app-country-input
-      (onEnter)="search($event)"
-      (onDebounce)="typedText($event)"
-      customPlaceholder="Type a country name..."
-    ></app-country-input>
+  <div class="row">
+    <div class="col">
+      <app-country-input
+        (onEnter)="search($event)"
+        (onDebounce)="suggestText($event)"
+        customPlaceholder="Type a country name..."
+      ></app-country-input>
+    </div>
   </div>
+
+  <ul *ngIf="suggestActive" class="list-group">
+    <li
+      class="list-group-item list-group-item-action"
+      style="cursor: pointer"
+      *ngFor="let sc of SugCountries"
+    >
+      <a class="nav-link" [routerLink]="['/country', sc.cca2]">
+        {{ sc.name.common }}</a
+      >
+    </li>
+    <li
+      class="list-group-item list-group-item-action bg-primary-subtle"
+      style="cursor: pointer"
+      (click)="suggestCountry(searchInput)"
+    >
+      <a class="nav-link">
+        Show All: "<span class="fw-bolder">
+          {{ searchInput }}
+        </span>
+        "</a
+      >
+    </li>
+  </ul>
 </div>
 
 <div *ngIf="errorExist" class="mt-3 alert alert-danger">

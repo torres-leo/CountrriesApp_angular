@@ -1,0 +1,12 @@
+.active {
+  color: orange;
+  border-bottom: 2px solid;
+}
+
+.btn {
+  margin-right: 8px;
+}
+
+.btn:last-of-type {
+  margin-right: 0;
+}

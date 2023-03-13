@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Country } from '../../interfaces/country.interface';
+import { Region } from '../../interfaces/region.interface';
 import { CountryService } from '../../services/country.service';
 
 @Component({
@@ -12,29 +13,26 @@ export class ByRegionComponent {
   errorExist = false;
   countries: Country[] = [];
   capital: string = 'capital';
+  regions: string[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+
+  regionActive = '';
 
   constructor(private countryService: CountryService) {}
 
-  search(value: string) {
-    this.errorExist = false;
-    this.searchInput = value;
+  activateRegion(region: string) {
+    if (region === this.regionActive) return;
 
-    this.countryService.searchByRegion(this.searchInput).subscribe(
-      (countries) => {
-        this.countries = countries;
-      },
-      (error) => {
-        this.errorExist = true;
-        this.countries = [];
-        setTimeout(() => {
-          this.searchInput = '';
-          this.errorExist = false;
-        }, 6000);
-      }
-    );
+    this.regionActive = region;
+    this.countries = [];
+
+    this.countryService.searchByRegion(region).subscribe((countries) => {
+      this.countries = countries;
+    });
   }
 
-  typedText(value: string) {
-    this.errorExist = false;
+  setActiveRegion(region: string) {
+    return region === this.regionActive
+      ? 'btn btn-primary'
+      : 'btn btn-outline-primary';
   }
 }

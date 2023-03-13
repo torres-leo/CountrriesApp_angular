@@ -40,6 +40,7 @@
             <th>Official Name</th>
             <th>Population</th>
             <th>Sub Region</th>
+            <th>Currency</th>
           </tr>
         </thead>
 
@@ -49,6 +50,14 @@
             <td>{{ country.population | number }}</td>
             <td>
               {{ country.subregion }}
+            </td>
+            <td>
+              <p
+                *ngFor="let currency of country.currencies | keyvalue"
+                style="display: block"
+              >
+                {{ currency.value.name }} ({{ currency.value.symbol }})
+              </p>
             </td>
           </tr>
         </tbody>
@@ -61,10 +70,10 @@
       <h3 class="">Translations</h3>
       <div class="d-flex flex-wrap gap-2 mt-3">
         <p
-          *ngFor="let t of country.translations | keyvalue"
+          *ngFor="let translation of country.translations | keyvalue"
           class="badge bg-primary mr-5"
         >
-          {{ t.value.official }}
+          {{ translation.value.official }}
         </p>
       </div>
     </div>

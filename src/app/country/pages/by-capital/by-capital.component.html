@@ -1,12 +1,14 @@
-<h3>By Capital</h3>
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h3 class="mb-2">By Capital</h3>
 
-<div class="row">
-  <div class="col">
-    <app-country-input
-      (onEnter)="search($event)"
-      (onDebounce)="typedText($event)"
-      customPlaceholder="Type a capital country name..."
-    ></app-country-input>
+  <div class="row">
+    <div class="col">
+      <app-country-input
+        (onEnter)="search($event)"
+        (onDebounce)="typedText($event)"
+        customPlaceholder="Type a capital country name..."
+      ></app-country-input>
+    </div>
   </div>
 </div>
 
